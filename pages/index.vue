@@ -40,8 +40,6 @@
 </template>
 
 <script>
-import { searchRepo } from "@/repositories/searchRepo.js";
-
 export default {
   data() {
     return {
@@ -52,9 +50,8 @@ export default {
   methods: {
     async searchArticles() {
       try {
-        const resp = await searchRepo.getArticles(this.keyword);
-        this.listArticle = resp.data.articles;
-        console.log(this.listArticle);
+        const resp = await this.$repositories.search.getArticles(this.keyword);
+        this.listArticle = resp.articles;
       } catch (e) {
         console.log(e);
       }
